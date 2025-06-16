@@ -159,6 +159,8 @@ This agent demonstrates **hybrid authentication**:
 - **Calculator tools**: No authentication required (public)
 - **GitHub tools**: Bearer token authentication required (private)
 
+To learn more about authentication, check out the [Bhindi.io Agent Documentation](https://github.com/upsurgeio/bhindi-docs#-authentication)
+
 ## 📚 API Endpoints
 
 - `GET /tools` - Get list of available tools (public)
@@ -267,6 +269,6 @@ We're here for you! You can reach out to us at:
 
 - **Email**: [info@bhindi.io](mailto:info@bhindi.io)
 - **Twitter/X**: [@bhindiai](https://x.com/bhindiai) for the latest updates
-- **Discord**: [Join our community](https://discord.gg/tuXzyx5U)
+- **Discord**: [Join our community](https://discord.gg/hSfTG33ymy)
 - **Documentation**: [Bhindi Docs](https://github.com/upsurgeio/bhindi-docs)
 - **Website**: [Bhindi.io](https://bhindi.io)
