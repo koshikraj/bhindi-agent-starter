@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Bhindi Agent Starter Kit API",
-    "description": "Complete API collection for the Calculator + GitHub Agent - a TypeScript-based service that demonstrates both public calculator tools and authenticated GitHub tools.\n\n## Authentication\n- **Calculator Tools**: No authentication required (public)\n- **GitHub Tools**: Bearer token required (GitHub Personal Access Token)\n\n## Available Tools\n### Calculator Tools (Public)\n1. **add** - Add two numbers\n2. **subtract** - Subtract two numbers (requires confirmation)\n3. **multiply** - Multiply two numbers\n4. **divide** - Divide two numbers\n5. **power** - Calculate power (a^b)\n6. **sqrt** - Calculate square root\n7. **percentage** - Calculate percentage\n8. **factorial** - Calculate factorial (requires confirmation, costs 2 credits)\n9. **countCharacter** - Count character occurrences in text\n\n### GitHub Tools (Authenticated)\n10. **listUserRepositories** - List user's GitHub repositories",
+    "description": "Complete API collection for the Calculator + GitHub Agent - a TypeScript-based service that demonstrates both public calculator tools and authenticated GitHub tools.\n\n## Authentication\n- **Calculator Tools**: No authentication required (public)\n- **GitHub Tools**: Bearer token required (GitHub Personal Access Token)\n\n## Available Tools\n### Calculator Tools (Public)\n1. **add** - Add two numbers\n2. **subtract** - Subtract two numbers (requires confirmation)\n3. **multiply** - Multiply two numbers\n4. **divide** - Divide two numbers\n5. **power** - Calculate power (a^b)\n6. **sqrt** - Calculate square root\n7. **percentage** - Calculate percentage\n8. **factorial** - Calculate factorial (requires confirmation)\n9. **countCharacter** - Count character occurrences in text\n\n### GitHub Tools (Authenticated)\n10. **listUserRepositories** - List user's GitHub repositories",
     "version": "1.0.0",
     "contact": {
       "name": "Bhindi Agent API"
@@ -106,9 +106,6 @@
                           },
                           "confirmationRequired": {
                             "type": "boolean"
-                          },
-                          "credits": {
-                            "type": "number"
                           }
                         }
                       }
@@ -374,7 +371,7 @@
           "Calculator Tools"
         ],
         "summary": "Calculate Factorial",
-        "description": "Calculate factorial of a number (n!). ⚠️ Expensive operation - requires confirmation and costs 2 credits. Maximum recommended value: 20.",
+        "description": "Calculate factorial of a number (n!). ⚠️ Expensive operation - requires confirmation. Maximum recommended value: 20.",
         "security": [],
         "requestBody": {
           "content": {

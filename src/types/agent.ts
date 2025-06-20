@@ -11,20 +11,17 @@ export class ToolDto {
   description: string;
   parameters: ToolParameterDto;
   confirmationRequired?: boolean;
-  credits?: number;
 
   constructor(
     name: string,
     description: string,
     parameters: ToolParameterDto,
     confirmationRequired?: boolean,
-    credits?: number
   ) {
     this.name = name;
     this.description = description;
     this.parameters = parameters;
     this.confirmationRequired = confirmationRequired;
-    this.credits = credits;
   }
 }
 

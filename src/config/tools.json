@@ -135,7 +135,6 @@
       },
       "required": ["number"]
     },
-    "credits": 2,
     "confirmationRequired": true
   },
   {

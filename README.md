@@ -19,7 +19,7 @@ This starter kit teaches you how to build agents with:
 - **Authenticated tools** (GitHub - Bearer token required)
 - **Mixed authentication patterns** in a single agent
 - **Proper parameter validation** using JSON Schema
-- **Advanced features** like `confirmationRequired` and `credits`
+- **Advanced features** like `confirmationRequired`
 - **Standardized response formats** following agent specification
 
 ## ✨ Features
@@ -28,7 +28,6 @@ This starter kit teaches you how to build agents with:
 - **8 mathematical operations**: Basic arithmetic, power, square root, percentage, factorial
 - **Parameter validation**: Proper error handling for invalid inputs
 - **Confirmation required**: Demonstrates user confirmation for certain operations
-- **Credits system**: Shows cost-based tool execution
 
 ### GitHub Tools (Authentication Required)
 - **Repository listing**: List user's GitHub repositories with Bearer token
@@ -55,7 +54,7 @@ This starter kit teaches you how to build agents with:
 | `power` | Calculate a^b | Supports negative exponents |
 | `sqrt` | Square root | Error handling for negative inputs |
 | `percentage` | Calculate percentage | Handles decimal percentages |
-| `factorial` | Calculate factorial | `credits: 2`, `confirmationRequired: true` |
+| `factorial` | Calculate factorial | `confirmationRequired: true` |
 | `countCharacter` | Count character occurrences in text | String manipulation |
 
 ### GitHub Tools (Private - Auth Required)
@@ -228,12 +227,11 @@ This starter kit teaches you:
 4. **Error Handling**: Proper error responses and status codes
 5. **Response Formats**: Standardized success/error responses
 6. **Testing**: Comprehensive test coverage patterns
-7. **Tool Features**: `confirmationRequired`, `credits`, parameter types
+7. **Tool Features**: `confirmationRequired`, parameter types
 
 ## 🔧 Advanced Features Demonstrated
 
 - **confirmationRequired**: `subtract` and `factorial` tools
-- **credits**: `factorial` tool costs 2 credits (expensive operation)
 - **Parameter validation**: Type checking and required parameters
 - **Enum parameters**: GitHub tool sort/direction options
 - **Default values**: Optional parameters with defaults
@@ -257,7 +255,7 @@ This starter follows the [Bhindi.io](https://bhindi.io) agent specification:
 - ✅ Required endpoints: `GET /tools`, `POST /tools/:toolName`
 - ✅ Standardized response formats: `BaseSuccessResponseDto`, `BaseErrorResponseDto`
 - ✅ JSON Schema parameter validation
-- ✅ Tool confirmation and credits system
+- ✅ Tool confirmation
 - ✅ Authentication patterns (Bearer tokens)
 - ✅ Proper error handling and status codes
 

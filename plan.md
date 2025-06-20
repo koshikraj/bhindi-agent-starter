@@ -11,7 +11,6 @@ An agent is a service that exposes tools and operations through a standardized R
 - [ ] Endpoints:
   - [ ] `GET /tools` (Required): Returns the list of supported tools
   - [ ] `POST /tools/:toolName` (Required): Executes a specified tool with provided parameters
-  - [ ] `POST /resource` (Optional): Returns user context information
 - [ ] Tools JSON: Define tool metadata in `src/config/tools.json`
 - [ ] Authentication: Configurable authentication strategy for tool execution
 - [ ] Error Handling: Standardized error responses following agent specification
@@ -22,7 +21,7 @@ This template follows the standard agent specification with:
 - Standardized response formats (`BaseSuccessResponseDto`, `BaseErrorResponseDto`)
 - Tool parameter validation using JSON Schema
 - Proper HTTP status codes and error handling
-- Optional confirmation and credit system support
+- Optional confirmation
 
 ---
 
@@ -57,7 +56,6 @@ Choose based on your agent's purpose:
   - [ ] `description`: brief explanation of what the tool does
   - [ ] `parameters`: JSON Schema object with `properties` and `required` fields
   - [ ] `confirmationRequired` (optional): boolean for dangerous operations
-  - [ ] `credits` (optional): cost/credit information
 
 ### Example Tool Structure
 ```json
@@ -79,7 +77,6 @@ Choose based on your agent's purpose:
     "required": ["requiredParam"]
   },
   "confirmationRequired": false,
-  "credits": 1
 }
 ```
 
@@ -123,7 +120,6 @@ interface ToolsResponseDto {
 
 ### Implementation Options
 - **Single Route**: `POST /tools/:toolName` for all tool execution
-- **Domain Routes**: `POST /resource` for user context + tool-specific endpoints
 - **Hybrid**: Both patterns supported (recommended)
 
 ---

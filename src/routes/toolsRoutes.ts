@@ -27,7 +27,6 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
       tool.description,
       tool.parameters,
       tool.confirmationRequired,
-      tool.credits
     ));
 
     const response = new ToolsResponseDto(tools);
