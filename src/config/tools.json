@@ -13,20 +13,12 @@
           "type": "string",
           "description": "The token to swap from"
         },
-        "validatorSalt": {
-          "type": "string",
-          "description": "The validator salt"
-        },
         "amount": {
           "type": "string",
           "description": "The amount of tokens to swap"
-        },
-        "accountAddress": {
-          "type": "string",
-          "description": "The account address"
         }
       },
-      "required": ["toToken", "fromToken", "validatorSalt", "amount", "accountAddress"]
+      "required": ["toToken", "fromToken", "amount"]
     }
   },
   {
@@ -46,13 +38,9 @@
         "token": {
           "type": "string",
           "description": "The token to send"
-        },
-        "validatorSalt": {
-          "type": "string",
-          "description": "The validator salt"
         }
       },
-      "required": ["toAddress", "amount", "token", "validatorSalt"]
+      "required": ["toAddress", "amount", "token"]
     }
   }
 ] 
