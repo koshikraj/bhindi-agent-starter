@@ -19,7 +19,8 @@
         }
       },
       "required": ["toToken", "fromToken", "amount"]
-    }
+    },
+    "confirmationRequired": true
   },
   {
     "name": "send",
@@ -41,6 +42,7 @@
         }
       },
       "required": ["toAddress", "amount", "token"]
-    }
+    },
+    "confirmationRequired": true
   }
 ] 

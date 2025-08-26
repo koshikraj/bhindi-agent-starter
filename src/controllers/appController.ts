@@ -111,26 +111,6 @@ export class AppController {
     }
   }
 
-  /**
-   * Validate parameters for character count tool
-   */
-  private validateCharacterCountParameters(params: any): void {
-    if (params.character === undefined || params.character === null) {
-      throw new Error('Missing required parameter: character');
-    }
-    if (params.text === undefined || params.text === null) {
-      throw new Error('Missing required parameter: text');
-    }
-    if (typeof params.character !== 'string') {
-      throw new Error("Parameter 'character' must be a string");
-    }
-    if (typeof params.text !== 'string') {
-      throw new Error("Parameter 'text' must be a string");
-    }
-    if (params.character.length !== 1) {
-      throw new Error('Character parameter must be exactly one character');
-    }
-  }
 
 
 
