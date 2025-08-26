@@ -1,190 +1,58 @@
 [
   {
-    "name": "add",
-    "description": "Add two numbers together",
+    "name": "swap",
+    "description": "Swap tokens from one token to another",
     "parameters": {
       "type": "object",
       "properties": {
-        "a": {
-          "type": "number",
-          "description": "First number"
+        "toToken": {
+          "type": "string", 
+          "description": "The token to swap to"
         },
-        "b": {
-          "type": "number",
-          "description": "Second number"
-        }
-      },
-      "required": ["a", "b"]
-    }
-  },
-  {
-    "name": "subtract",
-    "description": "Subtract second number from first number (requires confirmation for demonstration)",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "a": {
-          "type": "number",
-          "description": "Number to subtract from"
-        },
-        "b": {
-          "type": "number",
-          "description": "Number to subtract"
-        }
-      },
-      "required": ["a", "b"]
-    },
-    "confirmationRequired": true
-  },
-  {
-    "name": "multiply",
-    "description": "Multiply two numbers",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "a": {
-          "type": "number",
-          "description": "First number"
-        },
-        "b": {
-          "type": "number",
-          "description": "Second number"
-        }
-      },
-      "required": ["a", "b"]
-    }
-  },
-  {
-    "name": "divide",
-    "description": "Divide first number by second number",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "a": {
-          "type": "number",
-          "description": "Dividend (number to be divided)"
-        },
-        "b": {
-          "type": "number",
-          "description": "Divisor (number to divide by, cannot be zero)"
-        }
-      },
-      "required": ["a", "b"]
-    }
-  },
-  {
-    "name": "power",
-    "description": "Calculate a number raised to a power (a^b)",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "base": {
-          "type": "number",
-          "description": "Base number"
-        },
-        "exponent": {
-          "type": "number",
-          "description": "Exponent"
-        }
-      },
-      "required": ["base", "exponent"]
-    }
-  },
-  {
-    "name": "sqrt",
-    "description": "Calculate the square root of a number",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "number": {
-          "type": "number",
-          "description": "Number to calculate square root of (must be non-negative)"
-        }
-      },
-      "required": ["number"]
-    }
-  },
-  {
-    "name": "percentage",
-    "description": "Calculate percentage of a number (a% of b)",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "percentage": {
-          "type": "number",
-          "description": "Percentage value"
-        },
-        "of": {
-          "type": "number",
-          "description": "Number to calculate percentage of"
-        }
-      },
-      "required": ["percentage", "of"]
-    }
-  },
-  {
-    "name": "factorial",
-    "description": "Calculate factorial of a number (n!) - expensive operation for large numbers",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "number": {
-          "type": "number",
-          "description": "Non-negative integer to calculate factorial of (recommended max: 20)"
-        }
-      },
-      "required": ["number"]
-    },
-    "confirmationRequired": true
-  },
-  {
-    "name": "countCharacter",
-    "description": "Count the number of times a specific character appears in text",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "character": {
+        "fromToken": {
           "type": "string",
-          "description": "Character to count (single character)"
+          "description": "The token to swap from"
         },
-        "text": {
+        "validatorSalt": {
           "type": "string",
-          "description": "Text to search in"
+          "description": "The validator salt"
+        },
+        "amount": {
+          "type": "string",
+          "description": "The amount of tokens to swap"
+        },
+        "accountAddress": {
+          "type": "string",
+          "description": "The account address"
         }
       },
-      "required": ["character", "text"]
+      "required": ["toToken", "fromToken", "validatorSalt", "amount", "accountAddress"]
     }
   },
   {
-    "name": "listUserRepositories",
-    "description": "List repositories for the authenticated GitHub user (requires Bearer token authentication)",
+    "name": "send",
+    "description": "Send tokens to an address from the account address",
     "parameters": {
       "type": "object",
       "properties": {
-        "per_page": {
-          "type": "number",
-          "description": "Number of repositories to return (1-100)",
-          "default": 10
-        },
-        "sort": {
+        "toAddress": {
           "type": "string",
-          "description": "Sort repositories by",
-          "enum": ["created", "updated", "pushed", "full_name"],
-          "default": "updated"
+          "description": "The address to send tokens to"
         },
-        "direction": {
+        "amount": {
           "type": "string",
-          "description": "Sort direction",
-          "enum": ["asc", "desc"],
-          "default": "desc"
+          "description": "The amount of tokens to send"
         },
-        "type": {
+        "token": {
           "type": "string",
-          "description": "Repository type filter",
-          "enum": ["all", "owner", "public", "private", "member"],
-          "default": "owner"
+          "description": "The token to send"
+        },
+        "validatorSalt": {
+          "type": "string",
+          "description": "The validator salt"
         }
-      }
+      },
+      "required": ["toAddress", "amount", "token", "validatorSalt"]
     }
   }
 ] 
