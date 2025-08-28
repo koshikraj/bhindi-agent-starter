@@ -68,11 +68,11 @@ const createApp = async (): Promise<Application> => {
   app.get('/health', (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
-      message: 'Calculator + GitHub Agent is running!',
+      message: 'Brewit Agent is running!',
       timestamp: new Date().toISOString(),
       tools: {
-        calculator: 'No authentication required',
-        github: 'Bearer token authentication required'
+        swap: 'No authentication required',
+        send: 'Bearer token authentication required'
       }
     });
   });

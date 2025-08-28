@@ -1,6 +1,6 @@
-# Bhindi Agent Starter Kit
+# Bhindi Brewit Agent on Monad
 
-A TypeScript-based agent starter kit that demonstrates both **public calculator tools** and **authenticated GitHub tools**. Perfect for learning agent development with the [Bhindi.io](https://bhindi.io) specification.
+A TypeScript-based agent starter kit that demonstrates integration with Brewit Money's API for token operations. Perfect for learning agent development with the [Bhindi.io](https://bhindi.io) specification.
 
 # What is Bhindi?
 Bhindi lets you talk to your apps like you talk to a friend.
@@ -15,24 +15,19 @@ For comprehensive documentation on building agents, visit the [Bhindi Documentat
 ## 🎯 What This Starter Kit Demonstrates
 
 This starter kit teaches you how to build agents with:
-- **Public tools** (Calculator - no authentication required)
-- **Authenticated tools** (GitHub - Bearer token required)
-- **Mixed authentication patterns** in a single agent
+- **Token Operations** (Swap and Send tokens)
+- **Brewit Money Integration** (API integration for DeFi operations)
 - **Proper parameter validation** using JSON Schema
 - **Advanced features** like `confirmationRequired`
 - **Standardized response formats** following agent specification
 
 ## ✨ Features
 
-### Calculator Tools (No Authentication)
-- **8 mathematical operations**: Basic arithmetic, power, square root, percentage, factorial
+### Token Operations
+- **Token Swaps**: Swap between different tokens
+- **Token Transfers**: Send tokens to other addresses
 - **Parameter validation**: Proper error handling for invalid inputs
-- **Confirmation required**: Demonstrates user confirmation for certain operations
-
-### GitHub Tools (Authentication Required)
-- **Repository listing**: List user's GitHub repositories with Bearer token
-- **Simple REST API**: Uses standard fetch calls (no heavy dependencies)
-- **Authentication demonstration**: Shows how to handle Bearer tokens
+- **Confirmation required**: User confirmation for all token operations
 
 ### Development Features
 - **Full TypeScript support** with strict typing
@@ -43,25 +38,12 @@ This starter kit teaches you how to build agents with:
 
 ## 🚀 Available Tools
 
-### Calculator Tools
+### Token Operation Tools
 
 | Tool | Description | Special Features |
 |------|-------------|------------------|
-| `add` | Add two numbers | Basic operation |
-| `subtract` | Subtract two numbers | `confirmationRequired: true` |
-| `multiply` | Multiply two numbers | Basic operation |
-| `divide` | Divide two numbers | Error handling for division by zero |
-| `power` | Calculate a^b | Supports negative exponents |
-| `sqrt` | Square root | Error handling for negative inputs |
-| `percentage` | Calculate percentage | Handles decimal percentages |
-| `factorial` | Calculate factorial | `confirmationRequired: true` |
-| `countCharacter` | Count character occurrences in text | String manipulation |
-
-### GitHub Tools (Private - Auth Required)
-
-| Tool | Description | Authentication |
-|------|-------------|----------------|
-| `listUserRepositories` | List user's repositories | Bearer token required |
+| `swap` | Swap between tokens | `confirmationRequired: true` |
+| `send` | Send tokens to address | `confirmationRequired: true` |
 
 ## 📋 Quick Start
 
@@ -87,84 +69,70 @@ npm run dev
 # Get available tools
 curl -X GET "http://localhost:3000/tools"
 
-# Test calculator (no auth needed)
-curl -X POST "http://localhost:3000/tools/add" \
+# Test token swap
+curl -X POST "http://localhost:3000/tools/swap" \
   -H "Content-Type: application/json" \
-  -d '{"a": 5, "b": 3}'
-
-# Test character counting
-curl -X POST "http://localhost:3000/tools/countCharacter" \
-  -H "Content-Type: application/json" \
-  -d '{"character": "s", "text": "strawberrry"}'
+  -d '{
+    "toToken": "USDC",
+    "fromToken": "ETH",
+    "amount": "1.0",
+    "validatorSalt": "your-validator-salt",
+    "accountAddress": "your-account-address"
+  }'
 ```
 
 ## 🧮 Usage Examples
 
-### Calculator Tools (No Authentication)
+### Token Operations
 
 ```bash
-# Basic addition
-curl -X POST "http://localhost:3000/tools/add" \
+# Token Swap
+curl -X POST "http://localhost:3000/tools/swap" \
   -H "Content-Type: application/json" \
-  -d '{"a": 10, "b": 5}'
+  -d '{
+    "toToken": "USDC",
+    "fromToken": "ETH",
+    "amount": "1.0",
+    "validatorSalt": "your-validator-salt",
+    "accountAddress": "your-account-address"
+  }'
 
-# Division with error handling
-curl -X POST "http://localhost:3000/tools/divide" \
+# Send Tokens
+curl -X POST "http://localhost:3000/tools/send" \
   -H "Content-Type: application/json" \
-  -d '{"a": 10, "b": 0}'  # Will return error
-
-# Factorial (requires confirmation)
-curl -X POST "http://localhost:3000/tools/factorial" \
-  -H "Content-Type: application/json" \
-  -d '{"number": 5}'
-
-# Percentage calculation
-curl -X POST "http://localhost:3000/tools/percentage" \
-  -H "Content-Type: application/json" \
-  -d '{"percentage": 25, "of": 80}'
-
-# Character counting in text
-curl -X POST "http://localhost:3000/tools/countCharacter" \
-  -H "Content-Type: application/json" \
-  -d '{"character": "s", "text": "strawberrry"}'
+  -d '{
+    "toAddress": "recipient-address",
+    "amount": "100",
+    "token": "USDC",
+    "validatorSalt": "your-validator-salt",
+    "accountAddress": "your-account-address"
+  }'
 
 # Expected response:
 # {
 #   "success": true,
 #   "responseType": "mixed",
 #   "data": {
-#     "operation": "Count 's' in \"strawberrry\"",
-#     "result": 1,
-#     "message": "Calculated Count 's' in \"strawberrry\" = 1",
-#     "tool_type": "calculator"
+#     "name": "Monad Agent Job",
+#     "repeat": 5000,
+#     "times": 1,
+#     "task": "swap",
+#     "enabled": true
 #   }
 # }
 ```
 
-### GitHub Tools (Authentication Required)
-
-```bash
-# List repositories (requires GitHub token)
-curl -X POST "http://localhost:3000/tools/listUserRepositories" \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer YOUR_GITHUB_TOKEN" \
-  -d '{"per_page": 5, "sort": "updated"}'
-```
-
 ## 🔐 Authentication
 
-This agent demonstrates **hybrid authentication**:
-
-- **Calculator tools**: No authentication required (public)
-- **GitHub tools**: Bearer token authentication required (private)
-
-To learn more about authentication, check out the [Bhindi.io Agent Documentation](https://github.com/upsurgeio/bhindi-docs#-authentication)
+This agent requires authentication for all operations:
+- **Validator Salt**: Required for transaction validation
+- **Account Address**: Required for transaction execution
 
 ## 📚 API Endpoints
 
-- `GET /tools` - Get list of available tools (public)
-- `POST /tools/:toolName` - Execute a specific tool (auth depends on tool type)
-- `GET /health` - Health check endpoint (shows tool authentication requirements)
+- `GET /tools` - Get list of available tools
+- `POST /tools/:toolName` - Execute a specific tool (requires authentication)
+- `GET /health` - Health check endpoint
 - `GET /docs` - Swagger UI documentation (serves `public/swagger.json`)
 
 ## 📖 Documentation & Examples
@@ -180,22 +148,20 @@ src/
 ├── config/
 │   └── tools.json          # Tool definitions with JSON Schema
 ├── controllers/
-│   └── appController.ts    # Handles both calculator & GitHub tools
+│   └── appController.ts    # Handles token operations
 ├── services/
-│   ├── calculatorService.ts # Mathematical operations
-│   └── githubService.ts     # Simple GitHub API calls
+│   └── BrewitService.ts   # Brewit Money API integration
 ├── routes/
-│   ├── toolsRoutes.ts      # GET /tools endpoint
-│   └── appRoutes.ts        # POST /tools/:toolName endpoint
+│   ├── toolsRoutes.ts     # GET /tools endpoint
+│   └── appRoutes.ts       # POST /tools/:toolName endpoint
 ├── middlewares/
-│   ├── auth.ts             # Authentication utilities
-│   └── errorHandler.ts     # Error handling middleware
+│   ├── auth.ts            # Authentication utilities
+│   └── errorHandler.ts    # Error handling middleware
 ├── types/
-│   └── agent.ts            # Response type definitions
-├── __tests__/
-│   └── calculatorService.test.ts # Comprehensive tests
-├── app.ts                  # Express app configuration
-└── server.ts              # Server entry point
+│   └── agent.ts           # Response type definitions
+├── __tests__/            # Test files
+├── app.ts                # Express app configuration
+└── server.ts             # Server entry point
 ```
 
 ## 🧪 Development
@@ -222,7 +188,7 @@ npm run dev
 This starter kit teaches you:
 
 1. **Agent Architecture**: How to structure tools and services
-2. **Mixed Authentication**: Public vs authenticated endpoints
+2. **API Integration**: Integrating with Brewit Money's API
 3. **Parameter Validation**: JSON Schema validation patterns
 4. **Error Handling**: Proper error responses and status codes
 5. **Response Formats**: Standardized success/error responses
@@ -231,23 +197,21 @@ This starter kit teaches you:
 
 ## 🔧 Advanced Features Demonstrated
 
-- **confirmationRequired**: `subtract` and `factorial` tools
+- **confirmationRequired**: All token operations require confirmation
 - **Parameter validation**: Type checking and required parameters
-- **Enum parameters**: GitHub tool sort/direction options
-- **Default values**: Optional parameters with defaults
-- **Error handling**: Division by zero, negative square roots, etc.
-- **Mixed response types**: Different data structures for different tools
+- **Error handling**: Invalid addresses, insufficient balances, etc.
+- **Mixed response types**: Different data structures for different operations
 
 ## 🚀 Next Steps
 
 Once you understand this agent, you can:
 
-1. **Add more calculator functions**: Trigonometry, logarithms, etc.
-2. **Add more authenticated tools**: Twitter, Slack, database operations
-3. **Implement middleware authentication**: Global auth patterns
-4. **Add validation middleware**: Request/response validation
-5. **Add rate limiting**: Protect expensive operations
-6. **Add database integration**: Store calculation history
+1. **Add more token operations**: Liquidity provision, staking, etc.
+2. **Implement transaction history**: Track and display past operations
+3. **Add more chains**: Support multiple blockchain networks
+4. **Add advanced trading strategies**: Automated trading features
+5. **Add rate limiting**: Protect against excessive operations
+6. **Add portfolio management**: Track token balances and performance
 
 ## 📖 Agent Specification Compliance
 
@@ -256,7 +220,7 @@ This starter follows the [Bhindi.io](https://bhindi.io) agent specification:
 - ✅ Standardized response formats: `BaseSuccessResponseDto`, `BaseErrorResponseDto`
 - ✅ JSON Schema parameter validation
 - ✅ Tool confirmation
-- ✅ Authentication patterns (Bearer tokens)
+- ✅ Authentication patterns
 - ✅ Proper error handling and status codes
 
 Perfect for learning how to build production-ready agents! 🎉

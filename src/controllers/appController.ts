@@ -4,7 +4,7 @@ import { BaseSuccessResponseDto, BaseErrorResponseDto } from '../types/agent.js'
 
 /**
  * App Controller
- * Handles both calculator tools (public, no auth) and GitHub tools (authenticated)
+ * Handles both Brewit tools (public, no auth) and GitHub tools (authenticated)
  * Demonstrates mixed authentication patterns for educational purposes
  */
 export class AppController {

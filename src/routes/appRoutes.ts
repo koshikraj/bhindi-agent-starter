@@ -6,7 +6,7 @@ const appController = new AppController();
 
 /**
  * Unified tool execution endpoint
- * Handles both calculator tools (no auth) and GitHub tools (with auth)
+ * Handles both Brewit tools (no auth) and GitHub tools (with auth)
  * The controller determines authentication requirements based on tool type
  */
 router.post('/tools/:toolName', appController.handleTool.bind(appController));
